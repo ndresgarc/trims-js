@@ -1,14 +1,72 @@
+
 (function(){
 
-    var slug = document.currentScript.getAttribute('trims-slug');
+    const TRIMS_DEFAULT_SLUG = 'trims';
+
+    var slug = document.currentScript.getAttribute('trims-slug') || TRIMS_DEFAULT_SLUG;
+
+    function ready(fn) {
+        if (document.readyState != 'loading'){
+          fn();
+        } else {
+          document.addEventListener('DOMContentLoaded', fn);
+        }
+    }
+
+    var _fn_width = function (pipe) {
+        var propertyValue = window.getComputedStyle(this).getPropertyValue('width');            
+        var cleanValue = propertyValue.slice(0, -2);
+        if (!pipe) {
+            return cleanValue;
+        }
+        if (pipe != 'px') {
+            return;                
+        }
+    
+        return cleanValue + pipe;
+    }
+
+    var _fn_arrow_width = (pipe) => {
+        var propertyValue = window.getComputedStyle(this).getPropertyValue('width');            
+        var cleanValue = propertyValue.slice(0, -2);
+        if (!pipe) {
+            return cleanValue;
+        }
+        if (pipe != 'px') {
+            return;                
+        }
+
+        return cleanValue + pipe;
+    }
+    
 
     functions = {
+
         ahoy: function() {
             console.table({
                 repo: "https://github.com/ndresgarc/trims-js.git",
                 version: "0.0.1"
             });
-        }
+        },
+
+        /**
+         * Currently only supports the 'px' pipe
+         * @param {*} pipe 
+         * @returns 
+         */
+        /*width: (pipe) => {
+            var propertyValue = window.getComputedStyle(this).getPropertyValue('width');            
+            var cleanValue = propertyValue.slice(0, -2);
+            if (!pipe) {
+                return cleanValue;
+            }
+            if (pipe != 'px') {
+                return;                
+            }
+
+            return cleanValue + pipe;
+        }*/
+
     };
 
     switch (document.currentScript.getAttribute('trims-interface')) {
@@ -26,10 +84,34 @@
             Object.keys(functions).forEach(function(fn){
                 HTMLElement.prototype[fn] = functions[fn];
             }, functions);
+
+         
+            HTMLElement.prototype.width = _fn_width;
+        break;
+        case 'prototype-chained':
+            HTMLElement.prototype[slug] = function () {
+                return {
+                    width: _fn_width.bind(this)
+                }
+            }    
         break;
         case "prototype-scope":
-            HTMLElement.prototype[slug] = functions;
+
+            HTMLElement.prototype[slug] = {};
+
+            // When loaded
+            ready(function(){
+                document.querySelectorAll('*').forEach(function(element){
+                    element.trims = {};
+                    element.trims.width = _fn_width.bind(element);
+                });
+            });
+
+            // Keep alive
+            // Start mutation observer
+
         break;
     }
 
 })();
+
