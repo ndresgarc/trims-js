@@ -26,8 +26,8 @@
         return cleanValue + pipe;
     }
 
-    var _fn_arrow_width = (pipe) => {
-        var propertyValue = window.getComputedStyle(this).getPropertyValue('width');            
+    var _fn_height = function (pipe) {
+        var propertyValue = window.getComputedStyle(this).getPropertyValue('height');            
         var cleanValue = propertyValue.slice(0, -2);
         if (!pipe) {
             return cleanValue;
@@ -35,10 +35,9 @@
         if (pipe != 'px') {
             return;                
         }
-
+    
         return cleanValue + pipe;
     }
-    
 
     functions = {
 
@@ -49,24 +48,9 @@
             });
         },
 
-        /**
-         * Currently only supports the 'px' pipe
-         * @param {*} pipe 
-         * @returns 
-         */
-        /*width: (pipe) => {
-            var propertyValue = window.getComputedStyle(this).getPropertyValue('width');            
-            var cleanValue = propertyValue.slice(0, -2);
-            if (!pipe) {
-                return cleanValue;
-            }
-            if (pipe != 'px') {
-                return;                
-            }
+        width: _fn_width,
 
-            return cleanValue + pipe;
-        }*/
-
+        height: _fn_height
     };
 
     switch (document.currentScript.getAttribute('trims-interface')) {
@@ -84,14 +68,12 @@
             Object.keys(functions).forEach(function(fn){
                 HTMLElement.prototype[fn] = functions[fn];
             }, functions);
-
-         
-            HTMLElement.prototype.width = _fn_width;
         break;
         case 'prototype-chained':
             HTMLElement.prototype[slug] = function () {
                 return {
-                    width: _fn_width.bind(this)
+                    width: _fn_width.bind(this),
+                    heigh: _fn_height(this)
                 }
             }    
         break;
@@ -104,6 +86,7 @@
                 document.querySelectorAll('*').forEach(function(element){
                     element.trims = {};
                     element.trims.width = _fn_width.bind(element);
+                    element.trims.height = _fn_height.bind(element);
                 });
             });
 
