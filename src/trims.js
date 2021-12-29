@@ -39,6 +39,18 @@
         return cleanValue + pipe;
     }
 
+    var _fn_hide = function () {
+        this.style.display = 'none';
+    }
+
+    var _fn_show = function (pipe) {
+        if (!pipe) {
+            this.style.display = 'block';
+            return;
+        }
+        this.style.display = pipe;
+    }
+
     functions = {
 
         ahoy: function() {
@@ -47,6 +59,10 @@
                 version: "0.0.1"
             });
         },
+
+        hide: _fn_hide,
+
+        show: _fn_show,
 
         width: _fn_width,
 
@@ -85,8 +101,10 @@
             ready(function(){
                 document.querySelectorAll('*').forEach(function(element){
                     element.trims = {};
-                    element.trims.width = _fn_width.bind(element);
-                    element.trims.height = _fn_height.bind(element);
+                    Object.keys(functions).forEach(function(fn){
+                        element.trims[fn] = functions[fn].bind(element);
+                        HTMLElement.prototype[fn] = functions[fn];
+                    }, functions);
                 });
             });
 
