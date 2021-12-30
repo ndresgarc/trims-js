@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "temp"
-  },
+    "outDir": "temp",
+    "target": "es5",
+    "declaration": true,
+    "declarationDir": "temp"
+    },
   "include": ["./**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "temp"]
 }
