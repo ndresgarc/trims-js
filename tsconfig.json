@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "outDir": "temp"
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["node_modules"]
+}
