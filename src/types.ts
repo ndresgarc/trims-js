@@ -1,4 +1,3 @@
-type FunctionPipe = (measure: number) => any;
+export type FunctionPipe = (measure: number) => any;
 
-type MeasurePipe = 'px' | 'em' | '%' | FunctionPipe; 
-
+export type MeasurePipe = 'px' | 'em' | '%' | FunctionPipe; 
