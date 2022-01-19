@@ -1,4 +1,4 @@
-import fns from './fns';
+import * as fns from './fns';
 
 HTMLElement.prototype[slug] = function () {
     return {
