@@ -1,16 +1,21 @@
 {
     "name": "trims-js",
+    "main": "dist/trims.js",
     "version": "0.0.1",
     "author": "ndresgarc",
     "repository": "https://github.com/ndresgarc/trims-js.git",
     "homepage": "https://andresgarcia.dev/trims-js",
     "scripts": {
-        "dev": "lite-server",
-        "typescript": "tsc",
-        "rollup": "rollup -c"
+        "start": "webpack-dev-server",
+        "build": "webpack",
+        "dev": "lite-server"
     },
     "devDependencies": {
         "lite-server": "^2.6.1",
-        "typescript": "^4.5.4"
+        "ts-loader": "^9.2.6",
+        "typescript": "^4.5.5",
+        "webpack": "^5.67.0",
+        "webpack-cli": "^4.9.1",
+        "webpack-dev-server": "^4.7.3"
     }
 }
