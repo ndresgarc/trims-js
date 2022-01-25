@@ -1,4 +1,4 @@
-import { MeasurePipe } from './types';
+import { MeasurePipe } from '../ts/types';
 
 export const _fn_width = function (pipe: MeasurePipe) {
 
