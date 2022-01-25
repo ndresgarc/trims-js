@@ -1,6 +1,6 @@
 
-import { _fn_width } from './width';
-import { _fn_height } from './height'
+import { _fn_width } from './fns/width';
+import { _fn_height } from './fns/height'
 
 export const init = function(flavour: string) {
     return {
