@@ -5,6 +5,7 @@ declare global {
     interface HTMLElement {
         width: any;
         height: any;
+        show: any;
     }
 }
 
@@ -13,3 +14,4 @@ let fns = init('global-prefix');
 
 HTMLElement.prototype.width = fns.width;
 HTMLElement.prototype.height = fns.height;
+HTMLElement.prototype.show = fns.show;
