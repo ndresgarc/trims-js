@@ -1,4 +1,4 @@
-import { init } from './fns';
+import { init } from './init';
 
 declare global {
     interface Window { trims: any; }
