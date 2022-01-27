@@ -6,6 +6,7 @@ declare global {
         width: any;
         height: any;
         show: any;
+        hide: any;
     }
 }
 
@@ -15,3 +16,4 @@ let fns = init('global-prefix');
 HTMLElement.prototype.width = fns.width;
 HTMLElement.prototype.height = fns.height;
 HTMLElement.prototype.show = fns.show;
+HTMLElement.prototype.hide = fns.hide;
