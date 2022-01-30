@@ -1,21 +1,21 @@
 import { init } from './init';
 
 declare global {
-    interface Window { __TRIMS: any; }
-    interface HTMLElement {
-        ahoy: any;
-        width: any;
-        height: any;
-        show: any;
-        hide: any;
+    interface Window {
+        __TRIMS: 'global' | 'global-prefix';
+        __TRIMS_SLUG: string;
+          trims_ahoy: any;
+          trims_width: any;
+          trims_height: any;
+          trims_show: any;
+          trims_hide: any;
     }
 }
 
 window.__TRIMS = 'global-prefix';
+window.__TRIMS_SLUG = 'trims_';
 let fns = init('global-prefix');
 
-HTMLElement.prototype.ahoy = fns.ahoy;
-HTMLElement.prototype.width = fns.width;
-HTMLElement.prototype.height = fns.height;
-HTMLElement.prototype.show = fns.show;
-HTMLElement.prototype.hide = fns.hide;
+Object.keys(fns).forEach(function(fnKey){
+    window[window.__TRIMS_SLUG + fnKey] = fns[fnKey];
+}, fns);

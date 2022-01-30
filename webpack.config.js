@@ -5,7 +5,8 @@ module.exports = {
     mode: 'development',
 
   entry: {
-    "trims.global.prefix": "./src/trims.global.prefix.ts"
+    "trims.global.prefix": "./src/trims.global.prefix.ts",
+    "trims.global": "./src/trims.global.ts"
   },
 
   output: {
