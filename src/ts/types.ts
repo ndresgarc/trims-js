@@ -27,3 +27,19 @@ export type DisplayPipe =
   | "initial"
   | "inherit"
   | FunctionPipe;
+
+export type TrimsScrollEvent =
+  | "scroll-up"
+  | "scroll-down"
+  | "scroll-top"
+  | "scroll-bottom";
+
+export type TrimsResizeEvent =
+  | "viewport-xs"
+  | "viewport-s"
+  | "viewport-m"
+  | "viewport-l"
+  | "viewport-xl"
+  | "viewport-xxl";
+
+export type TrimsEvent = TrimsScrollEvent | TrimsResizeEvent;
