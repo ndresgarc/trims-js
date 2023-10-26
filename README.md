@@ -6,6 +6,12 @@ Functional prototyped JS library
 ### Global
 
 ```
+ahoy();
+```
+
+### Global preffix
+
+```
 __TRIMS.ahoy();
 ````
 
