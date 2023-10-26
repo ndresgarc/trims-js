@@ -1,4 +1,4 @@
-import { fns } from './fns';
+import { fns } from '../fns';
 
 export const init = function(flavour: string) {
     return {
